@@ -1,6 +1,7 @@
 import locationIqData from '../data/locationIqData';
 import yelpData from '../data/yelpData';
-import { formatLocation, formatYelp } from '../lib/utils';
+import weatherData from '../data/weatherData';
+import { formatLocation, formatYelp, formatWeather } from '../lib/utils';
 
 describe('API location data munging', () => {
   const expectedLocations = 
@@ -43,5 +44,27 @@ describe('API yelp data munging', () => {
   it('munges yelp data', async () => {
     const output = formatYelp(yelpData);
     expect(output).toEqual(expectedYelps);
+  });
+});
+
+describe('API weather data munging', () => {
+  const expectedWeather = [
+    {
+      'forecast': 'Broken clouds',
+      'time': '2021-05-12'
+    },
+    {
+      'forecast': 'Few clouds',
+      'time': '2021-05-13'
+    },
+    {
+      'forecast': 'Moderate rain',
+      'time': '2021-05-14'
+    }
+  ];
+
+  it('munges weather data', async () => {
+    const output = formatWeather(weatherData);
+    expect(output).toEqual(expectedWeather);
   });
 });
